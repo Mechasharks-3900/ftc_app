@@ -34,8 +34,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/spinner_item"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:padding="10dp"
-          android:textSize="30sp" />
+    android:id="@+id/spinner_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:textSize="30sp" />
