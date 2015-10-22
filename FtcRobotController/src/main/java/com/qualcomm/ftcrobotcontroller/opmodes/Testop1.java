@@ -14,7 +14,7 @@ public class Testop1 extends OpMode {
     }
 
     public void init() {
-
+        motorone = hardwareMap.dcMotor.get("motorone");
     }
 
     public void loop() {
