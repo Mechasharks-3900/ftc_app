@@ -18,7 +18,7 @@ public class Testop1 extends OpMode {
     }
 
     public void loop() {
-        float throttle = gamepad1.left_stick_y;
+        float throttle = 1;
         motorone.setPower(throttle);
 
     }
