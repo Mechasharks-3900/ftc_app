@@ -22,6 +22,8 @@ public class TankDriver extends OpMode {
     @Override
     public void loop() {
         motorLeft.setPower(gamepad1.left_stick_y);
-        motorRight.setPower(gamepad1.right_trigger * 2 - 1);
+        motorRight.setPower(-1*(gamepad1.right_trigger * 2 - 1));
+        telemetry.addData("Text", "*** Robot Data***");
+        telemetry.addData("Speed", "left:" + gamepad1.left_stick_y + "right:" + (-1*(gamepad1.right_trigger * 2 - 1)));
     }
 }
