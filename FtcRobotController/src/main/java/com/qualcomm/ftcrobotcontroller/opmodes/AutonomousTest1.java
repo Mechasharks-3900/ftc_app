@@ -7,6 +7,13 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 /**
  * Created by stjzito1 on 11/17/2015.
  */
-public class autonomoustest{
+public class AutonomousTest1 extends AutonomousSuper{
+    public void init(){
+        resetEncoder();
+        drive(10,100);
+    }
 
+    public void loop(){
+        //does nothing
+   }
 }

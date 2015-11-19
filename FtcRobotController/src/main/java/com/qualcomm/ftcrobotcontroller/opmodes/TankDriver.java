@@ -18,13 +18,20 @@ public class TankDriver extends OpMode {
         motorLeft = hardwareMap.dcMotor.get("motor left");
         motorRight = hardwareMap.dcMotor.get("motor right");
         touch = hardwareMap.touchSensor.get("touch sensor");
-        DcMotorController.RunMode.RESET_ENCODERS(motorRight);
+        /*
+        This makes the robot controls lag considerably
+
+        motorRight.getController().setMotorChannelMode(2, DcMotorController.RunMode.RESET_ENCODERS);
+        motorLeft.getController().setMotorChannelMode(1, DcMotorController.RunMode.RESET_ENCODERS);
+        motorRight.getController().setMotorChannelMode(2, DcMotorController.RunMode.RUN_USING_ENCODERS);
+        motorLeft.getController().setMotorChannelMode(1, DcMotorController.RunMode.RUN_USING_ENCODERS);
+        */
     }
 
     @Override
     public void loop() {
-        motorLeft.setPower(gamepad1.left_stick_y);
-        motorRight.setPower(-1*(gamepad1.right_trigger * 2 - 1));
+        motorLeft.setPower((gamepad1.left_stick_y));
+        motorRight.setPower((-1*(gamepad1.right_trigger * 2 - 1)));
         telemetry.addData("Text", "*** Robot Data***");
         telemetry.addData("Speed", "left:" + gamepad1.left_stick_y + "right:" + (-1*(gamepad1.right_trigger * 2 - 1)));
         telemetry.addData("Right Encoder", motorRight.getCurrentPosition());
