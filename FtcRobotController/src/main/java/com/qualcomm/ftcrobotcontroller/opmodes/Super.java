@@ -16,7 +16,10 @@ public abstract class Super extends OpMode {
     public void setup(){
         motorLeft = hardwareMap.dcMotor.get("motor left");
         motorRight = hardwareMap.dcMotor.get("motor right");
-        int tankMode = 1;
+    }
+    public void setupTeleOP(){
+        setup();
+        tankMode=1;
     }
     public void resetEncoder(){
         motorLeft.getController().setMotorChannelMode(1, DcMotorController.RunMode.RESET_ENCODERS);
