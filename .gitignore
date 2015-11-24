@@ -26,4 +26,4 @@ build/
 
 *ASUS_PC_01*
 
-FtcRobotController/src/main/java/com/qualcomm/ftcrobotcontroller/opmodes/FtcOpModeRegister.java
+gradle.properties

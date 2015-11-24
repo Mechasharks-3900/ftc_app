@@ -36,13 +36,13 @@
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/androidTest/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />
@@ -65,7 +65,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
+<<<<<<< 0dadb131c59a0d9a1f4418aff0ac44e4f05ebe0f
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+=======
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/debug" />
+>>>>>>> alter opmodes and opmode registration to be more convenient
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/Analytics-release/jars" />
@@ -77,6 +83,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
+<<<<<<< 0dadb131c59a0d9a1f4418aff0ac44e4f05ebe0f
+=======
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/release" />
+>>>>>>> alter opmodes and opmode registration to be more convenient
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
@@ -87,15 +97,15 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.4.2 Google APIs" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
-    <orderEntry type="library" exported="" name="ModernRobotics-release-" level="project" />
-    <orderEntry type="library" exported="" name="Analytics-release-" level="project" />
-    <orderEntry type="library" exported="" name="FtcCommon-release-" level="project" />
-    <orderEntry type="library" exported="" name="WirelessP2p-release-" level="project" />
-    <orderEntry type="library" exported="" name="Hardware-release-" level="project" />
     <orderEntry type="library" exported="" name="RobotCore-release-" level="project" />
-    <orderEntry type="library" exported="" name="effects-Google Inc.:Google APIs:19" level="project" />
+    <orderEntry type="library" exported="" name="ModernRobotics-release-" level="project" />
+    <orderEntry type="library" exported="" name="WirelessP2p-release-" level="project" />
+    <orderEntry type="library" exported="" name="Analytics-release-" level="project" />
+    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
+    <orderEntry type="library" exported="" name="Hardware-release-" level="project" />
+    <orderEntry type="library" exported="" name="FtcCommon-release-" level="project" />
     <orderEntry type="library" exported="" name="usb-Google Inc.:Google APIs:19" level="project" />
+    <orderEntry type="library" exported="" name="effects-Google Inc.:Google APIs:19" level="project" />
     <orderEntry type="library" exported="" name="maps-Google Inc.:Google APIs:19" level="project" />
   </component>
 </module>

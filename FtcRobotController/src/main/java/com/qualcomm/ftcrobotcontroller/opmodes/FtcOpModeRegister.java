@@ -31,8 +31,29 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.mechasharks.robot.AbstractOpmode;
+import com.mechasharks.robot.Register;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
+
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.AbstractCollection;
+import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import dalvik.system.DexFile;
 
 /**
  * Register Op Modes
@@ -46,51 +67,25 @@ public class FtcOpModeRegister implements OpModeRegister {
      * @param manager op mode manager
      */
     public void register(OpModeManager manager) {
+        try {
+            DexFile dexFile = new DexFile(new File("/data/app/com.uxpsystems.cepclient-2.apk"));
+            Enumeration<String> enumeration = dexFile.entries();
 
-    /*
-     * register your op modes here.
-     * The first parameter is the name of the op mode
-     * The second parameter is the op mode class property
-     *
-     * If two or more op modes are registered with the same name, the app will display an error.
-     */
-
-        manager.register("TeleOp1", TeleOP1.class);
-        manager.register("TankDriver", TankDriver.class);
-        manager.register("AutonomousTest1", AutonomousTest1.class);
-        manager.register("NullOp", NullOp.class);
-
-    /*
-     * Uncomment any of the following lines if you want to register an op mode.
-     */
-
-        //manager.register("AdafruitRGBExample", AdafruitRGBExample.class);
-        //manager.register("ColorSensorDriver", ColorSensorDriver.class);
-
-        //manager.register("IrSeekerOp", IrSeekerOp.class);
-        //manager.register("CompassCalibration", CompassCalibration.class);
-        //manager.register("I2cAddressChangeExample", LinearI2cAddressChange.class);
-
-
-        //manager.register("NxtTeleOp", NxtTeleOp.class);
-
-        //manager.register("LinearK9TeleOp", LinearK9TeleOp.class);
-        //manager.register("LinearIrExample", LinearIrExample.class);
-
-
-        //manager.register ("PushBotManual1", PushBotManual1.class);
-        //manager.register ("PushBotAutoSensors", PushBotAutoSensors.class);
-        //manager.register ("PushBotIrEvent", PushBotIrEvent.class);
-
-        //manager.register ("PushBotManualSensors", PushBotManualSensors.class);
-        //manager.register ("PushBotOdsDetectEvent", PushBotOdsDetectEvent.class);
-        //manager.register ("PushBotOdsFollowEvent", PushBotOdsFollowEvent.class);
-        //manager.register ("PushBotTouchEvent", PushBotTouchEvent.class);
-
-        //manager.register("PushBotDriveTouch", PushBotDriveTouch.java);
-        //manager.register("PushBotIrSeek", PushBotIrSeek.java);
-        //manager.register("PushBotSquare", PushBotSquare.java);
-
-
+            while (enumeration.hasMoreElements()){
+                String className = enumeration.nextElement();
+                try {
+                    Class<?> clazz = Class.forName(className);
+                    if (!clazz.isAssignableFrom(OpMode.class)) {
+                        continue;
+                    }
+                    Class<? extends OpMode> opmode = (Class<? extends OpMode>) clazz;
+                    Register reg = opmode.getAnnotation(Register.class);
+                    if (reg != null)
+                        manager.register(reg.name(), opmode);
+                } catch (ClassNotFoundException ignored) {}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
