@@ -17,10 +17,6 @@ public abstract class Super extends OpMode {
         motorLeft = hardwareMap.dcMotor.get("motor left");
         motorRight = hardwareMap.dcMotor.get("motor right");
     }
-    public void setupTeleOP(){
-        setup();
-        tankMode=1;
-    }
     public void resetEncoder(){
         motorLeft.getController().setMotorChannelMode(1, DcMotorController.RunMode.RESET_ENCODERS);
         motorRight.getController().setMotorChannelMode(2,DcMotorController.RunMode.RESET_ENCODERS);
@@ -39,8 +35,8 @@ public abstract class Super extends OpMode {
     public void driveForward(int distance, int speed) {
         int rightposition = motorRight.getCurrentPosition();
         int leftposition = motorLeft.getCurrentPosition();
-        motorRight.setTargetPosition(distance +rightposition);
-        motorLeft.setTargetPosition(distance+leftposition);
+        motorRight.setTargetPosition(distance + rightposition);
+        motorLeft.setTargetPosition(distance + leftposition);
         motorLeft.setPower(speed/100);
         motorRight.setPower(speed/100);
         motorLeft.getController().setMotorChannelMode(1, DcMotorController.RunMode.RUN_TO_POSITION);
@@ -48,7 +44,7 @@ public abstract class Super extends OpMode {
         //motorRight.setPower(speed);
         //motorLeft.setPower(speed);
     }
-    public void setPower(){
+    public void modeSelect(){
         if (tankMode % 2 == 1) {
             tankDrive();
         } else if (tankMode % 2 == 2) {
@@ -60,6 +56,16 @@ public abstract class Super extends OpMode {
 
             tankMode=tankMode+1;
         }
-        setPower();
+        modeSelect();
+    }
+    public void moveMotor(DcMotor motor,int motornumber, int distance1,int speed1){
+        int position = motor.getCurrentPosition();
+        motor.setTargetPosition(distance1+position);
+        motor.setPower(speed1 / 100);
+        motor.getController().setMotorChannelMode(motornumber, DcMotorController.RunMode.RUN_TO_POSITION);
+    }
+    public void turn(int speedturn,int turnratio){
+        motorLeft.setPower((-1 * (speedturn * 2 - 1)) * (1 - turnratio));
+        motorRight.setPower((-1*(speedturn * 2 - 1))*turnratio);
     }
 }

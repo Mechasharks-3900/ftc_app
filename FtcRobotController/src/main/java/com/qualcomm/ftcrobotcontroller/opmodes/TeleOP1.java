@@ -5,7 +5,8 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
  */
 public class TeleOP1 extends Super{
     public void init() {
-        setupTeleOP();
+        setup();
+        tankMode=1;
     }
     public void loop() {
         driveTeleOP();
