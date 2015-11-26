@@ -32,6 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.mechasharks.robot.Register;
+import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
@@ -55,14 +56,14 @@ public class FtcOpModeRegister implements OpModeRegister {
      */
     public void register(OpModeManager manager) {
         try {
-            DexFile dexFile = new DexFile(new File("/data/app/com.uxpsystems.cepclient-2.apk"));
+            DexFile dexFile = new DexFile(FtcRobotControllerActivity.exposedContext.getPackageCodePath());
             Enumeration<String> enumeration = dexFile.entries();
 
             while (enumeration.hasMoreElements()){
                 String className = enumeration.nextElement();
                 try {
                     Class<?> clazz = Class.forName(className);
-                    if (!clazz.isAssignableFrom(OpMode.class)) {
+                    if (!OpMode.class.isAssignableFrom(clazz)) {
                         continue;
                     }
                     Class<? extends OpMode> opmode = (Class<? extends OpMode>) clazz;

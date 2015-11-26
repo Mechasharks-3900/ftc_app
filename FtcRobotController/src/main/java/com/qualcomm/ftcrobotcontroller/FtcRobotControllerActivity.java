@@ -80,6 +80,8 @@ public class FtcRobotControllerActivity extends Activity {
 
     public static final String CONFIGURE_FILENAME = "CONFIGURE_FILENAME";
 
+    public static Context exposedContext;
+
     protected SharedPreferences preferences;
 
     protected UpdateUI.Callback callback;
@@ -141,6 +143,7 @@ public class FtcRobotControllerActivity extends Activity {
 
         utility = new Utility(this);
         context = this;
+        exposedContext = context;
         entireScreenLayout = (LinearLayout) findViewById(R.id.entire_screen);
         buttonMenu = (ImageButton) findViewById(R.id.menu_buttons);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
