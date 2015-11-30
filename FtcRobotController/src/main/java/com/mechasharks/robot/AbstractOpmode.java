@@ -17,7 +17,7 @@ public abstract class AbstractOpmode extends OpMode {
         driveRight = hardwareMap.dcMotor.get("motor right");
     }
 
-    public void drive(float left, float right) {
+    public void drive(double left, double right) {
         driveLeft.setPower(left);
         driveRight.setPower(right);
     }
