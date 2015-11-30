@@ -9,4 +9,16 @@ public abstract class TeleOp extends AbstractOpmode{
             gamepad2 = new WrappedGamepad(super.gamepad2);
 
 
+
+
+    public void tankDrive(){
+        driveLeft.setPower(gamepad1.leftStick.getY());
+        driveRight.setPower(gamepad1.rightStick.getY());
+    }
+
+    public void singleStickDrive(){
+        double ratio=(gamepad1.rightStick.getY()+1)/2;
+        driveLeft.setPower(gamepad1.rightStick.getY() * (1 - ratio));
+        driveRight.setPower(gamepad1.rightStick.getY() * ratio);
+    }
 }

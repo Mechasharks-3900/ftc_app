@@ -23,4 +23,8 @@ public class Joystick {
     public float getY() {
         return side == Side.LEFT ? gamepad.left_stick_y : gamepad.right_trigger * 2 - 1;
     }
+
+    public boolean button() {
+        return side == Side.LEFT ? gamepad.left_stick_button : gamepad.right_stick_button;
+    }
 }
