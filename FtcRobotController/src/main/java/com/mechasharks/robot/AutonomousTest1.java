@@ -6,14 +6,18 @@ package com.mechasharks.robot;
 @Register(name = "Autonomous Test")
 public class AutonomousTest1 extends AutonomousOp {
 
+    @Override
     public void init(){
         super.init();
         resetEncoders();
     }
 
+    @Override
     public void start(){
         driveTo(4500, 100);
     }
+    
+    @Override
     public void loop(){
         telemetry.addData("Right Encoder", driveRight.getChannelMode());
         telemetry.addData("Right Encoder Target", driveRight.getTargetPosition());
