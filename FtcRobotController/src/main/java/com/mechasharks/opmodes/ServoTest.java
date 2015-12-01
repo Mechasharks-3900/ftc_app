@@ -1,5 +1,7 @@
-package com.mechasharks.robot;
+package com.mechasharks.opmodes;
 
+import com.mechasharks.Register;
+import com.mechasharks.opmodes.abstractmodes.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**

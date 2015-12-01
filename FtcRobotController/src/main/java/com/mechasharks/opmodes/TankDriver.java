@@ -1,4 +1,7 @@
-package com.mechasharks.robot;
+package com.mechasharks.opmodes;
+
+import com.mechasharks.Register;
+import com.mechasharks.opmodes.abstractmodes.TeleOp;
 
 /**
  * Created by stjjensen1 on 11/20/2015.
@@ -11,7 +14,7 @@ public class TankDriver extends TeleOp {
 
     @Override
     public void loop() {
-        if (gamepad1.buttonChangedState(Button.A) && gamepad1.a()) {
+        if (/*gamepad1.buttonChangedState(Button.A) && */gamepad1.a()) {
             tankMode = (tankMode == TankMode.DIRECT)
                     ? TankMode.SINGLE_JOYSTICK
                     : TankMode.DIRECT;
