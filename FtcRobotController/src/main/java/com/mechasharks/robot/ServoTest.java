@@ -12,6 +12,7 @@ public class ServoTest extends TeleOp {
 
     @Override
     public void init() {
+        super.init();
         servo_1 = hardwareMap.servo.get("servo_1");
         servo_1 = hardwareMap.servo.get("servo_2");
     }
