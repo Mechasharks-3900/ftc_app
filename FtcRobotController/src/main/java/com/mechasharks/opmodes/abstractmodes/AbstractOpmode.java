@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
 /**
  * Created by stjjensen1 on 11/20/2015.
  */
-public abstract class AbstractOpmode extends OpMode {
+public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeft, driveRight;
 
 

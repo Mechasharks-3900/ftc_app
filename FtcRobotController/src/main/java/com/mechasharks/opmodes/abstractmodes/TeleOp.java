@@ -5,7 +5,7 @@ import com.mechasharks.gamepad.WrappedGamepad;
 /**
  * Created by stjjensen1 on 11/20/2015.
  */
-public abstract class TeleOp extends AbstractOpmode {
+public abstract class TeleOp extends AbstractOpMode {
 
     protected WrappedGamepad gamepad1 = new WrappedGamepad(super.gamepad1),
             gamepad2 = new WrappedGamepad(super.gamepad2);
