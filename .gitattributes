@@ -1,0 +1,6 @@
+* text=auto
+*.iml text
+*.java text
+*.gradle text
+*.bat text
+*.png binary
