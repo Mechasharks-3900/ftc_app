@@ -10,6 +10,7 @@ public class WrappedGamepad {
     public final Gamepad gamepad;
     public final Joystick leftStick;
     public final Joystick rightStick;
+    public final DPad dpad;
 
     public boolean buttonState(Button b) {
         switch (b) {
@@ -54,5 +55,13 @@ public class WrappedGamepad {
         this.gamepad = gamepad;
         leftStick = new Joystick(gamepad, Joystick.Side.LEFT);
         rightStick = new Joystick(gamepad, Joystick.Side.RIGHT);
+        dpad = new DPad(gamepad);
+    }
+
+    enum Button {
+        A,
+        B,
+        X,
+        Y,
     }
 }
