@@ -19,6 +19,8 @@ public abstract class AbstractOpmode extends OpMode {
     }
 
     public void drive(double left, double right) {
+        driveLeft.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
+        driveLeft.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
         driveLeft.setPower(left);
         driveRight.setPower(right);
     }
@@ -26,8 +28,6 @@ public abstract class AbstractOpmode extends OpMode {
     public void resetEncoders(){
         driveLeft.setChannelMode(RunMode.RESET_ENCODERS);
         driveRight.setChannelMode(RunMode.RESET_ENCODERS);
-        driveLeft.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
-        driveRight.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
     }
 
     public void driveTo(int position, float power) {
