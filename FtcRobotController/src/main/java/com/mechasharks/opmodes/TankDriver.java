@@ -20,5 +20,6 @@ public class TankDriver extends TeleOp {
                     : TankMode.DIRECT;
         }
         driveTeleOp(tankMode);
+        telemetry.addData("tankMode", tankMode);
     }
 }
