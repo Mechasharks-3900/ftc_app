@@ -14,7 +14,7 @@ public class TankDriver extends TeleOp {
 
     @Override
     public void loop() {
-        if (/*gamepad1.buttonChangedState(Button.A) && */gamepad1.a()) {
+        if (gamepad1.a) {
             tankMode = (tankMode == TankMode.DIRECT)
                     ? TankMode.SINGLE_JOYSTICK
                     : TankMode.DIRECT;

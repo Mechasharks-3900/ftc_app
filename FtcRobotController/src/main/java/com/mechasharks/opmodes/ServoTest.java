@@ -21,7 +21,7 @@ public class ServoTest extends TeleOp {
 
     @Override
     public void loop() {
-        servo_1.setPosition(gamepad1.leftStick.getY());
-        servo_2.setPosition(gamepad1.rightStick.getY());
+        servo_1.setPosition(gamepad1.left_stick_y);
+        servo_2.setPosition(gamepad1.right_stick_y);
     }
 }

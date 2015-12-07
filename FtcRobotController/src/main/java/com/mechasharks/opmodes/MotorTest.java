@@ -28,26 +28,26 @@ public class MotorTest extends TeleOp {
 
     @Override
     public void loop() {
-        if (gamepad1.dpad.right()) {
+        if (gamepad1.dpad_right) {
             power += 1.0 / 64;
         }
-        if (gamepad1.dpad.left()) {
+        if (gamepad1.dpad_left) {
             power -= 1.0 / 64;
         }
         int newIndex = index;
-        if (upPressed != gamepad1.dpad.up()) {
-            if (gamepad1.dpad.up()) {
+        if (upPressed != gamepad1.dpad_up) {
+            if (gamepad1.dpad_up) {
                 power = 0;
                 newIndex = (index + motors.size() - 1) % motors.size();
             }
-            upPressed = gamepad1.dpad.up();
+            upPressed = gamepad1.dpad_up;
         }
-        if (downPressed != gamepad1.dpad.down()) {
-            if (gamepad1.dpad.down()) {
+        if (downPressed != gamepad1.dpad_down) {
+            if (gamepad1.dpad_down) {
                 power = 0;
                 newIndex = (index + 1) % motors.size();
             }
-            downPressed = gamepad1.dpad.down();
+            downPressed = gamepad1.dpad_down;
         }
         motors.get(index).getValue().setPower(power);
         index = newIndex;
