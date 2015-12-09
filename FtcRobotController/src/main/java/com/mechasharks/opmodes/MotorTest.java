@@ -30,9 +30,11 @@ public class MotorTest extends TeleOp {
     public void loop() {
         if (gamepad1.dpad_right) {
             power += 1.0 / 64;
+            if (power > 1) power = 1;
         }
         if (gamepad1.dpad_left) {
             power -= 1.0 / 64;
+            if (power < -1) power = -1;
         }
         int newIndex = index;
         if (upPressed != gamepad1.dpad_up) {
@@ -51,5 +53,8 @@ public class MotorTest extends TeleOp {
         }
         motors.get(index).getValue().setPower(power);
         index = newIndex;
+
+        telemetry.addData("motor", index);
+        telemetry.addData("power", power);
     }
 }
