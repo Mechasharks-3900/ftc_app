@@ -10,17 +10,18 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 @Register(name = "Gamepad Test")
 public class GamepadTest extends TeleOp {
 
+    boolean whichPad = true;
     Gamepad pad;
 
     @Override
     public void start() {
         super.start();
-        pad = gamepad1;
     }
 
     @Override
     public void loop() {
-        telemetry.addData("Current Controller", pad == gamepad1 ? "gamepad 1" : "gamepad 2");
+        pad = whichPad ? gamepad1 : gamepad2;
+        telemetry.addData("Current Controller", whichPad ? "gamepad 1" : "gamepad 2");
         telemetry.addData("Button States",
                 String.format("A: %b, B: %b, X: %b, Y: %b",
                         pad.a,
@@ -45,9 +46,11 @@ public class GamepadTest extends TeleOp {
                         pad.right_stick_button
                 ));
 
-        if (pad == gamepad1 && gamepad2.a)
-            pad = gamepad2;
-        else if (pad == gamepad2 && gamepad1.a)
-            pad = gamepad1;
+        if (gamepad2.a && whichPad) {
+            whichPad = false;
+        }
+        else if (gamepad1.a && whichPad) {
+            whichPad = true;
+        }
     }
 }
