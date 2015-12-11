@@ -8,26 +8,30 @@ import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
  * Created by stjjensen1 on 11/20/2015.
  */
 public abstract class AbstractOpMode extends OpMode {
-    protected DcMotor driveLeft, driveRight;
+    protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack;
 
 
     @Override
     public void init() {
-        driveLeft = hardwareMap.dcMotor.get("motor left");
-        driveRight = hardwareMap.dcMotor.get("motor right");
+        driveLeftFront = hardwareMap.dcMotor.get("motor left front");
+        driveRightFront = hardwareMap.dcMotor.get("motor right front");
+        driveLeftBack = hardwareMap.dcMotor.get("motor left back");
+        driveRightBack = hardwareMap.dcMotor.get("motor right back");
         resetEncoders();
     }
 
     public void drive(double left, double right) {
-        driveLeft.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
-        driveLeft.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
-        driveLeft.setPower(left);
-        driveRight.setPower(right);
+        driveLeftFront.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
+        driveRightFront.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
+        driveLeftBack.setPower(left);
+        driveRightBack.setPower(right);
     }
 
     public void resetEncoders(){
-        driveLeft.setChannelMode(RunMode.RESET_ENCODERS);
-        driveRight.setChannelMode(RunMode.RESET_ENCODERS);
+        driveLeftFront.setChannelMode(RunMode.RESET_ENCODERS);
+        driveRightFront.setChannelMode(RunMode.RESET_ENCODERS);
+        driveLeftBack.setChannelMode(RunMode.RESET_ENCODERS);
+        driveRightBack.setChannelMode(RunMode.RESET_ENCODERS);
     }
 
     public void driveTo(int position, float power) {
@@ -35,8 +39,10 @@ public abstract class AbstractOpMode extends OpMode {
     }
 
     public void driveTo(int position, float power, boolean relative) {
-        moveTo(driveLeft, position, power, relative);
-        moveTo(driveRight, position, power, relative);
+        moveTo(driveLeftFront, position, power, relative);
+        moveTo(driveRightFront, position, power, relative);
+        moveTo(driveLeftBack, position, power, relative);
+        moveTo(driveRightBack, position, power, relative);
     }
 
     public void moveTo(DcMotor m, int position, float power, boolean relative) {

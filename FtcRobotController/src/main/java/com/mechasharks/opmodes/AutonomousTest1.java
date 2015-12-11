@@ -21,11 +21,11 @@ public class AutonomousTest1 extends AutonomousOp {
 
     @Override
     public void loop(){
-        telemetry.addData("Right Encoder", driveRight.getChannelMode());
-        telemetry.addData("Right Encoder Target", driveRight.getTargetPosition());
-        telemetry.addData("Right Encoder Current", driveRight.getCurrentPosition());
-        telemetry.addData("Left Encoder", driveLeft.getChannelMode());
-        telemetry.addData("Left Encoder Target", driveLeft.getTargetPosition());
-        telemetry.addData("Left Encoder Current", driveLeft.getCurrentPosition());
+        telemetry.addData("Right Encoder", driveRightBack.getChannelMode());
+        telemetry.addData("Right Encoder Target", driveRightBack.getTargetPosition());
+        telemetry.addData("Right Encoder Current", driveRightBack.getCurrentPosition());
+        telemetry.addData("Left Encoder", driveLeftBack.getChannelMode());
+        telemetry.addData("Left Encoder Target", driveLeftBack.getTargetPosition());
+        telemetry.addData("Left Encoder Current", driveLeftBack.getCurrentPosition());
     }
 }
