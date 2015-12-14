@@ -14,7 +14,7 @@ import java.util.Map;
 @Register(name = "Motor Test")
 public class MotorTest extends TeleOp {
 
-    List<Map.Entry<String,DcMotor>> motors;
+    List<Map.Entry<String, DcMotor>> motors;
 
     @Override
     public void start() {

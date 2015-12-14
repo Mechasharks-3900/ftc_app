@@ -10,17 +10,17 @@ import com.mechasharks.opmodes.abstractmodes.AutonomousOp;
 public class AutonomousTest1 extends AutonomousOp {
 
     @Override
-    public void init(){
+    public void init() {
         super.init();
     }
 
     @Override
-    public void start(){
+    public void start() {
         driveTo(1, 100);
     }
 
     @Override
-    public void loop(){
+    public void loop() {
         telemetry.addData("Right Encoder", driveRightBack.getChannelMode());
         telemetry.addData("Right Encoder Target", driveRightBack.getTargetPosition());
         telemetry.addData("Right Encoder Current", driveRightBack.getCurrentPosition());

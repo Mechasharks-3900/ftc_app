@@ -26,7 +26,7 @@ public abstract class TeleOp extends AbstractOpMode {
     /**
      * Created by stjjensen1 on 11/30/2015.
      */
-    public static enum TankMode {
+    public enum TankMode {
         DIRECT, SINGLE_JOYSTICK
     }
 }

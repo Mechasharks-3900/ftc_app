@@ -48,8 +48,7 @@ public class GamepadTest extends TeleOp {
 
         if (gamepad2.a && whichPad) {
             whichPad = false;
-        }
-        else if (gamepad1.a && whichPad) {
+        } else if (gamepad1.a && whichPad) {
             whichPad = true;
         }
     }

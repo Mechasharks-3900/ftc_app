@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack;
-    protected Servo  flipper;
+    protected Servo flipper;
 
 
     @Override
@@ -20,7 +20,7 @@ public abstract class AbstractOpMode extends OpMode {
         driveRightFront = hardwareMap.dcMotor.get("motor right front");
         driveLeftBack = hardwareMap.dcMotor.get("motor left back");
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
-        flipper =  hardwareMap.servo.get("flip");
+        flipper = hardwareMap.servo.get("flip");
         resetEncoders();
     }
 
@@ -35,7 +35,7 @@ public abstract class AbstractOpMode extends OpMode {
         driveRightFront.setPower(right);
     }
 
-    public void resetEncoders(){
+    public void resetEncoders() {
         driveLeftFront.setChannelMode(RunMode.RESET_ENCODERS);
         driveRightFront.setChannelMode(RunMode.RESET_ENCODERS);
         driveLeftBack.setChannelMode(RunMode.RESET_ENCODERS);
@@ -66,10 +66,11 @@ public abstract class AbstractOpMode extends OpMode {
         m.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
         m.setPower(power);
     }
-    public void  ServoTo (Servo a,int pos){
+
+    public void ServoTo(Servo a, int pos) {
         a.setPosition(pos);
-        telemetry.addData(a+" target", pos);
-        telemetry.addData(a+" position", a.getPosition());
+        telemetry.addData(a + " target", pos);
+        telemetry.addData(a + " position", a.getPosition());
     }
 
 }
