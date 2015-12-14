@@ -11,6 +11,7 @@ import com.mechasharks.opmodes.abstractmodes.TeleOp;
 public class TankDriver extends TeleOp {
 
     private TankMode tankMode = TankMode.DIRECT;
+    private int value = 1;
 
     @Override
     public void loop() {
@@ -19,7 +20,13 @@ public class TankDriver extends TeleOp {
                     ? TankMode.SINGLE_JOYSTICK
                     : TankMode.DIRECT;
         }
+        if (gamepad1.b) {
+            value = (value == 1)
+                    ? 0
+                    : 1;
+        }
         driveTeleOp(tankMode);
+        ServoTo(flipper, value);
         telemetry.addData("tankMode", tankMode);
     }
 }
