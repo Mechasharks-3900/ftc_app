@@ -2,6 +2,7 @@ package com.mechasharks.opmodes.abstractmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by stjjensen1 on 11/20/2015.
  */
 public abstract class AbstractOpMode extends OpMode {
-    protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack;
+    protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft;
     protected Servo flipper;
 
 
@@ -20,6 +21,8 @@ public abstract class AbstractOpMode extends OpMode {
         driveRightFront = hardwareMap.dcMotor.get("motor right front");
         driveLeftBack = hardwareMap.dcMotor.get("motor left back");
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
+        extenderLeft = hardwareMap.dcMotor.get("extender left");
+        extenderRight = hardwareMap.dcMotor.get("extender right");
         flipper = hardwareMap.servo.get("flip");
         resetEncoders();
     }
@@ -72,5 +75,11 @@ public abstract class AbstractOpMode extends OpMode {
         telemetry.addData(a + " target", pos);
         telemetry.addData(a + " position", a.getPosition());
     }
-
+    public void armExtender(double power){
+        extenderRight.setPower(power);
+        extenderLeft.setPower(power);
+        extenderLeft.setChannelMode(RunMode.RUN_USING_ENCODERS);
+        extenderRight.setChannelMode(RunMode.RUN_USING_ENCODERS);
+    }
 }
+

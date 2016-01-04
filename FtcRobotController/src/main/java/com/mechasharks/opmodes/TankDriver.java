@@ -28,5 +28,6 @@ public class TankDriver extends TeleOp {
         driveTeleOp(tankMode);
         ServoTo(flipper, value);
         telemetry.addData("tankMode", tankMode);
+        armExtender(gamepad1.right_trigger+(-1*gamepad1.left_trigger));
     }
 }
