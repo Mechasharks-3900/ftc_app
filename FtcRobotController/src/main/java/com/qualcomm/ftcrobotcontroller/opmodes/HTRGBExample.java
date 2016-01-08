@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * The op mode assumes that the color sensor
  * is configured with a name of "nxt".
  *
- * You can use the X button on either gamepad to turn the LED on and off.
+ * You can use the X button on either gamepad to turnWithGyro the LED on and off.
  *
  */
 public class HTRGBExample extends LinearOpMode {
@@ -69,7 +69,7 @@ public class HTRGBExample extends LinearOpMode {
     // bEnabled represents the state of the LED.
     boolean bEnabled = true;
 
-    // turn the LED on in the beginning, just so user will know that the sensor is active.
+    // turnWithGyro the LED on in the beginning, just so user will know that the sensor is active.
     sensorRGB.enableLed(true);
 
     // wait one cycle.
@@ -111,7 +111,7 @@ public class HTRGBExample extends LinearOpMode {
         // on button press, enable the LED.
         bEnabled = true;
 
-        // turn on the LED.
+        // turnWithGyro on the LED.
         sensorRGB.enableLed(bEnabled);
       } else if (bCurrState == false && bCurrState != bPrevState)  {
         // button is transitioning to a released state.
@@ -125,7 +125,7 @@ public class HTRGBExample extends LinearOpMode {
         // on button press, enable the LED.
         bEnabled = false;
 
-        // turn off the LED.
+        // turnWithGyro off the LED.
         sensorRGB.enableLed(false);
       }
 

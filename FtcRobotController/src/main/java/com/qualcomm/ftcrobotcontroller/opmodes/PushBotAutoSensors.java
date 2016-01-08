@@ -118,7 +118,7 @@ public class PushBotAutoSensors extends PushBotTelemetrySensors
             // speed (0.0 is stopped and 1.0 is full).
             //
             // The third and fourth parameters determine how long the wheels
-            // turn.
+            // turnWithGyro.
             //
             // When the encoder values have been reached the call resets the
             // encoders, halts the motors, and returns true.

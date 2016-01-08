@@ -52,14 +52,14 @@ public class PushBotOdsFollowEvent extends PushBotTelemetrySensors
 
     {
         //
-        // If a white line has been detected, then turn left.
+        // If a white line has been detected, then turnWithGyro left.
         //
         if (a_ods_white_tape_detected ())
         {
             set_drive_power (0.0, 0.2);
         }
         //
-        // Else a white line has not been detected, so turn right.
+        // Else a white line has not been detected, so turnWithGyro right.
         //
         else
         {

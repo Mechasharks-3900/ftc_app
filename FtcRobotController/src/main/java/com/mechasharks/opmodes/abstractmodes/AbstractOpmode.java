@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
@@ -11,7 +12,8 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft;
-    protected Servo flipper;
+    protected Servo boxLiftLeft, boxLiftRight, flipper;
+    protected GyroSensor gyroSensor;
 
 
     @Override
@@ -23,7 +25,11 @@ public abstract class AbstractOpMode extends OpMode {
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
         extenderLeft = hardwareMap.dcMotor.get("extender left");
         extenderRight = hardwareMap.dcMotor.get("extender right");
+        boxLiftLeft = hardwareMap.servo.get("box lift left");
+        boxLiftRight = hardwareMap.servo.get("box lift left");
         flipper = hardwareMap.servo.get("flip");
+        gyroSensor = hardwareMap.gyroSensor.get("gyro main");
+        gyroSensor.calibrate();
         resetEncoders();
     }
 
@@ -83,7 +89,12 @@ public abstract class AbstractOpMode extends OpMode {
         a.setPosition(pos);
         telemetry.addData(a + " target", pos);
         telemetry.addData(a + " position", a.getPosition());
-        wait1Msec(20);
+    }
+
+    public void ServoFlip(Servo b, int pos){
+        b.setPosition(pos);
+        telemetry.addData(b + " target", pos);
+        telemetry.addData(b + " position", b.getPosition());
     }
 
     public void armExtender(double power){

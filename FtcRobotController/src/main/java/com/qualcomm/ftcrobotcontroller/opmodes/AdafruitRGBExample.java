@@ -53,7 +53,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * to the digital signal pin of a digital port on the
  * Core Device Interface Module.
  *
- * You can use the digital port to turn the sensor's onboard
+ * You can use the digital port to turnWithGyro the sensor's onboard
  * LED on or off.
  *
  * The op mode assumes that the Core Device Interface Module
@@ -64,7 +64,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * is connected to the signal pin of digital port #5 (zero indexed)
  * of the Core Device Interface Module.
  *
- * You can use the X button on either gamepad to turn the LED on and off.
+ * You can use the X button on either gamepad to turnWithGyro the LED on and off.
  *
  */
 public class AdafruitRGBExample extends LinearOpMode {
@@ -97,7 +97,7 @@ public class AdafruitRGBExample extends LinearOpMode {
         // bEnabled represents the state of the LED.
         boolean bEnabled = true;
 
-        // turn the LED on in the beginning, just so user will know that the sensor is active.
+        // turnWithGyro the LED on in the beginning, just so user will know that the sensor is active.
         cdim.setDigitalChannelState(LED_CHANNEL, bEnabled);
 
         // wait one cycle.
@@ -139,7 +139,7 @@ public class AdafruitRGBExample extends LinearOpMode {
                 // on button press, enable the LED.
                 bEnabled = true;
 
-                // turn on the LED.
+                // turnWithGyro on the LED.
                 cdim.setDigitalChannelState(LED_CHANNEL, bEnabled);
 
             } else if (bCurrState == false && bCurrState != bPrevState) {
@@ -154,7 +154,7 @@ public class AdafruitRGBExample extends LinearOpMode {
                 // on button press, enable the LED.
                 bEnabled = false;
 
-                // turn off the LED.
+                // turnWithGyro off the LED.
                 cdim.setDigitalChannelState(LED_CHANNEL, bEnabled);
             }
 

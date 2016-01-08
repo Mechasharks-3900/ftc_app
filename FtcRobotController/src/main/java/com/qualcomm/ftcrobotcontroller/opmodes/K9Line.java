@@ -104,7 +104,7 @@ public class K9Line extends OpMode {
 		 */
 		reflectedLight = hardwareMap.lightSensor.get("light_sensor");
 
-        // turn on LED of light sensor.
+        // turnWithGyro on LED of light sensor.
         reflectedLight.enableLed(true);
 	}
 
@@ -123,9 +123,9 @@ public class K9Line extends OpMode {
 		claw.setPosition(clawPosition);
 
         /*
-         * As a temporary fix, turn on LED in run() event rather than in start().
+         * As a temporary fix, turnWithGyro on LED in run() event rather than in start().
          */
-        // turn on LED of light sensor.
+        // turnWithGyro on LED of light sensor.
         //reflectedLight.enableLed(true);
 
 		/*
@@ -139,14 +139,14 @@ public class K9Line extends OpMode {
 		if (reflection < LIGHT_THRESHOLD) {
 			/*
 			 * if reflection is less than the threshold value, then assume we are above dark spot.
-			 * turn to the right.
+			 * turnWithGyro to the right.
 			 */
 			left = MOTOR_POWER;
 			right = 0.0;
 		} else {
 			/*
 			 * assume we are over a light spot.
-			 * turn to the left.
+			 * turnWithGyro to the left.
 			 */
 			left = 0.0;
 			right = MOTOR_POWER;

@@ -139,21 +139,21 @@ public class K9IrSeeker extends OpMode {
             if (angle < -60)  {
                 /*
                  * IR source is to the way left.
-                 * Point turn to the left.
+                 * Point turnWithGyro to the left.
                  */
                 left = -MOTOR_POWER;
                 right = MOTOR_POWER;
 
             } else if (angle < -5) {
-                // turn to the left and move forward.
+                // turnWithGyro to the left and move forward.
                 left = MOTOR_POWER - 0.05;
                 right = MOTOR_POWER;
             } else if (angle > 5 && angle < 60) {
-                // turn to the right and move forward.
+                // turnWithGyro to the right and move forward.
                 left = MOTOR_POWER;
                 right = MOTOR_POWER - 0.05;
             } else if (angle > 60) {
-                // point turn to right.
+                // point turnWithGyro to right.
                 left = MOTOR_POWER;
                 right = -MOTOR_POWER;
             } else if (strength < HOLD_IR_SIGNAL_STRENGTH) {

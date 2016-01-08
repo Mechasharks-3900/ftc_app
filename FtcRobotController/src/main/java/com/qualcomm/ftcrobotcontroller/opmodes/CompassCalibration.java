@@ -93,7 +93,7 @@ public class CompassCalibration extends OpMode {
                 motorRight.setPower(-MOTOR_POWER);
                 motorLeft.setPower(MOTOR_POWER);
 
-                // Only turn for 20 seconds (plus the two second pause at the beginning)
+                // Only turnWithGyro for 20 seconds (plus the two second pause at the beginning)
                 if (time > turnTime + HOLD_POSITION) {
                     keepTurning = false;
                     returnToMeasurementMode = true;
