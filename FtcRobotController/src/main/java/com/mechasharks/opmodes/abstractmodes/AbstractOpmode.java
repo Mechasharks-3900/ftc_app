@@ -70,13 +70,6 @@ public abstract class AbstractOpMode extends OpMode {
         m.setPower(power);
     }
 
-    public void ServoTo(Servo a, int pos) {
-        a.setDirection(Servo.Direction.FORWARD);
-        a.setPosition(pos);
-        telemetry.addData(a + " target", pos);
-        telemetry.addData(a + " position", a.getPosition());
-        wait1Msec(20);
-    }
     public void wait1Msec(int delay)
     {
         try {
@@ -85,6 +78,14 @@ public abstract class AbstractOpMode extends OpMode {
             e.printStackTrace();
         }
     }
+
+    public void ServoTo(Servo a, int pos) {
+        a.setPosition(pos);
+        telemetry.addData(a + " target", pos);
+        telemetry.addData(a + " position", a.getPosition());
+        wait1Msec(20);
+    }
+
     public void armExtender(double power){
         extenderRight.setPower(power);
         extenderLeft.setPower(power);
