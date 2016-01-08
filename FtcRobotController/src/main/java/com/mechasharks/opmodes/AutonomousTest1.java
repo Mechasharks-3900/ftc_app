@@ -27,5 +27,6 @@ public class AutonomousTest1 extends AutonomousOp {
         telemetry.addData("Left Encoder", driveLeftBack.getChannelMode());
         telemetry.addData("Left Encoder Target", driveLeftBack.getTargetPosition());
         telemetry.addData("Left Encoder Current", driveLeftBack.getCurrentPosition());
+        telemetry.addData("Gyro position: ", gyroSensor.getRotation());
     }
 }

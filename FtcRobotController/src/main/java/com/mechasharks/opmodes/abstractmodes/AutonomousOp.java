@@ -8,11 +8,12 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
 
 public abstract class AutonomousOp extends AbstractOpMode {
 
-    GyroSensor GyroTurn = new GyroSensor();
+    protected GyroSensor gyroSensor;
 
-    public void GyroTurn(double degree, double position){
-        GyroTurn.getRotation(degree, position);
-
+    @Override
+    public void init() {
+        super.init();
+        gyroSensor = hardwareMap.gyroSensor.get("gyro main");
     }
 
     public void turn(int position, float power) {
