@@ -44,6 +44,7 @@ public class TankDriver extends TeleOp {
         ServoFlip(flipper, num);
         telemetry.addData("tankMode", tankMode);
         armExtender(gamepad1.right_trigger+(-1*gamepad1.left_trigger));
+        armLift(gamepad1.left_bumper+(-1*gamepad1.right_bumper))
         telemetry.addData("Gyro Z: ", gyroSensor.rawZ());
         telemetry.addData("Gyro heading: ", gyroSensor.getHeading());
 
