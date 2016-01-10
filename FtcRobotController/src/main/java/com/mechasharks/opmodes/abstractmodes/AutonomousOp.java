@@ -14,41 +14,39 @@ public abstract class AutonomousOp extends AbstractOpMode {
         super.init();
     }
 
-    public void turnWithGyro(int Degree, float power, boolean right){
+    public void turnWithGyro(int Degree, float power, boolean right) {
         int initialDegree = gyroSensor.getHeading();
-        int degreesErrorLeft = (initialDegree-Degree)*-1;
-        int degreesErrorRight = (initialDegree+Degree)*1;
-        if(!right) {
+        int degreesErrorLeft = initialDegree - Degree;
+        int degreesErrorRight = initialDegree + Degree;
+        int powerLeft = degreesErrorLeft;
+        int powerRight = degreesErrorRight;
+        if (!right) {
             while (Degree != degreesErrorRight) {
                 degreesErrorRight = gyroSensor.getHeading() - initialDegree;
                 if (degreesErrorRight >= 20) {
-                    int powerLeft = -1;
-                    int powerRight = 1;
+                    powerLeft = -1;
+                    powerRight = 1;
                 } else {
-                    int powerLeft = (degreesErrorRight/20)*-1;
-                    int powerRight = (degreesErrorRight/20)*1;
+                    powerLeft = (degreesErrorRight / 20) * -1;
+                    powerRight = (degreesErrorRight / 20) * 1;
+                }
+            }
+        } else {
+            while (Degree != degreesErrorLeft) {
+                degreesErrorLeft = initialDegree - gyroSensor.getHeading();
+                if (degreesErrorLeft >= 20) {
+                    powerLeft = -1;
+                    powerRight = 1;
+                } else {
+                    powerLeft = (degreesErrorLeft / 20) * -1;
+                    powerRight = (degreesErrorLeft / 20) * 1;
                 }
             }
         }
-        else{
-                while(Degree != degreesErrorLeft) {
-                    degreesErrorLeft = initialDegree - gyroSensor.getHeading();
-                    if (degreesErrorLeft >= 20) {
-                        int powerLeft = -1;
-                        int powerRight = 1;
-                    } else {
-                        int powerLeft = (degreesErrorLeft/20)*-1;
-                        int powerRight = (degreesErrorLeft/20)*1;
-                    }
-                }
-            }
-        int powerLeft = degreesErrorLeft;
-        int powerRight = degreesErrorRight;
-        drive(powerLeft, powerRight);
     }
 
 
-    public void turn(int position, float power, boolean relative){
+    public void turn(int position, float power, boolean relative) {
         moveTo(driveLeftFront, position, power, relative);
         moveTo(driveRightFront, position, power, relative);
         moveTo(driveLeftBack, position, power, relative);
