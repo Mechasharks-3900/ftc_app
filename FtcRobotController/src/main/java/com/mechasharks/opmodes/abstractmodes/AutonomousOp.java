@@ -18,33 +18,26 @@ public abstract class AutonomousOp extends AbstractOpMode {
         int initialDegree = gyroSensor.getHeading();
         int degreesErrorLeft = initialDegree - Degree;
         int degreesErrorRight = initialDegree + Degree;
-        int powerLeft = degreesErrorLeft;
-        int powerRight = degreesErrorRight;
         if (!right) {
             while (Degree != degreesErrorRight) {
                 degreesErrorRight = gyroSensor.getHeading() - initialDegree;
                 if (degreesErrorRight >= 20) {
-                    powerLeft = -1;
-                    powerRight = 1;
+                    drive(-1, 1);
                 } else {
-                    powerLeft = (degreesErrorRight / 20) * -1;
-                    powerRight = (degreesErrorRight / 20) * 1;
+                    drive(-1 / 20, 1 / 20);
                 }
             }
         } else {
             while (Degree != degreesErrorLeft) {
                 degreesErrorLeft = initialDegree - gyroSensor.getHeading();
                 if (degreesErrorLeft >= 20) {
-                    powerLeft = -1;
-                    powerRight = 1;
+                    drive(-1, 1);
                 } else {
-                    powerLeft = (degreesErrorLeft / 20) * -1;
-                    powerRight = (degreesErrorLeft / 20) * 1;
+                    drive(-1 / 20, 1 / 20);
                 }
             }
         }
     }
-
 
     public void turn(int position, float power, boolean relative) {
         moveTo(driveLeftFront, position, power, relative);
