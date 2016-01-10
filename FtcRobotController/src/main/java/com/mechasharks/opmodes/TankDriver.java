@@ -1,7 +1,6 @@
 package com.mechasharks.opmodes;
 
 import com.mechasharks.Register;
-import com.mechasharks.opmodes.abstractmodes.AutonomousOp;
 import com.mechasharks.opmodes.abstractmodes.TeleOp;
 
 /**
@@ -28,12 +27,12 @@ public class TankDriver extends TeleOp {
                     ? 0
                     : 1;
         }
-        if (gamepad1.x){
+        if (gamepad1.x) {
             type = (type == 1)
                     ? 0
                     : 1;
         }
-        if (gamepad1.y){
+        if (gamepad1.y) {
             num = (num == 1)
                     ? 0
                     : 1;
@@ -43,8 +42,8 @@ public class TankDriver extends TeleOp {
         ServoTo(boxLiftRight, type);
         ServoFlip(flipper, num);
         telemetry.addData("tankMode", tankMode);
-        armExtender(gamepad1.right_trigger+(-1*gamepad1.left_trigger));
-        armLift(gamepad1.left_bumper+(-1*gamepad1.right_bumper));
+        armExtender(gamepad1.right_trigger + (-1 * gamepad1.left_trigger));
+        armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));
         telemetry.addData("Gyro Z: ", gyroSensor.rawZ());
         telemetry.addData("Gyro heading: ", gyroSensor.getHeading());
 
