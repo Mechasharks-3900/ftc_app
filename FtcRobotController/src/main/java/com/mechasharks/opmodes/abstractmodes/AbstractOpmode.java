@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by stjjensen1 on 11/20/2015.
  */
 public abstract class AbstractOpMode extends OpMode {
-    protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft;
+    protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft, armLift;
     protected Servo boxLiftLeft, boxLiftRight, flipper;
     protected GyroSensor gyroSensor;
 
@@ -25,6 +25,7 @@ public abstract class AbstractOpMode extends OpMode {
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
         extenderLeft = hardwareMap.dcMotor.get("extender left");
         extenderRight = hardwareMap.dcMotor.get("extender right");
+        armLift = hardwareMap.dcMotor.get("lift");
         boxLiftLeft = hardwareMap.servo.get("box lift left");
         boxLiftRight = hardwareMap.servo.get("box lift left");
         flipper = hardwareMap.servo.get("flip");
@@ -102,6 +103,17 @@ public abstract class AbstractOpMode extends OpMode {
         extenderLeft.setPower(power);
         extenderLeft.setChannelMode(RunMode.RUN_USING_ENCODERS);
         extenderRight.setChannelMode(RunMode.RUN_USING_ENCODERS);
+    }
+
+    public void armExtendTo(int pos){
+        moveTo(extenderLeft, pos,75,false);
+        moveTo(extenderRight,pos,75,false);
+    }
+    public void armLift(double power){
+        armLift.setPower(power);
+    }
+    public void armLiftTo(int pos){
+        moveTo(armLift, pos, 75, false);
     }
 }
 
