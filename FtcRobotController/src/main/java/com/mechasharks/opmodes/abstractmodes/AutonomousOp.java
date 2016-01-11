@@ -14,12 +14,12 @@ public abstract class AutonomousOp extends AbstractOpMode {
         super.init();
     }
 
-    public void turnWithGyro(int Degree, float power, boolean right) {
+    public void turnWithGyro(int Degree, boolean right) {
         int initialDegree = gyroSensor.getHeading();
         int degreesErrorLeft = initialDegree - Degree;
         int degreesErrorRight = initialDegree + Degree;
         if (!right) {
-            while (Degree != degreesErrorRight) {
+            while (Degree != 0) {
                 degreesErrorRight = gyroSensor.getHeading() - initialDegree;
                 if (degreesErrorRight >= 20) {
                     drive(-1, 1);
@@ -28,7 +28,7 @@ public abstract class AutonomousOp extends AbstractOpMode {
                 }
             }
         } else {
-            while (Degree != degreesErrorLeft) {
+            while (Degree != 0) {
                 degreesErrorLeft = initialDegree - gyroSensor.getHeading();
                 if (degreesErrorLeft >= 20) {
                     drive(-1, 1);
