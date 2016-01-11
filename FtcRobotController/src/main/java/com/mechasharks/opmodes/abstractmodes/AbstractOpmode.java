@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft, armLift;
-    protected Servo boxLiftLeft, boxLiftRight, flipper;
+    protected Servo boxLiftLeft, boxLiftRight, flipper, BallPickerRight, BallPickerLeft;
     protected GyroSensor gyroSensor;
 
 
@@ -29,6 +29,8 @@ public abstract class AbstractOpMode extends OpMode {
         boxLiftLeft = hardwareMap.servo.get("box lift left");
         boxLiftRight = hardwareMap.servo.get("box lift left");
         flipper = hardwareMap.servo.get("flip");
+        BallPickerRight = hardwareMap.servo.get("ball picker right");
+        BallPickerLeft = hardwareMap.servo.get("ball picker left");
         gyroSensor = hardwareMap.gyroSensor.get("gyro main");
         gyroSensor.calibrate();
         resetEncoders();
@@ -92,10 +94,22 @@ public abstract class AbstractOpMode extends OpMode {
         telemetry.addData(a + " position", a.getPosition());
     }
 
-    public void ServoFlip(Servo b, int pos){
+    public void ServoLiftLeft(Servo b, int pos){
         b.setPosition(pos);
         telemetry.addData(b + " target", pos);
         telemetry.addData(b + " position", b.getPosition());
+    }
+
+    public void ServoLiftRight(Servo x, int pos){
+        x.setPosition(pos);
+        telemetry.addData(x + " target", pos);
+        telemetry.addData(x + " position", x.getPosition());
+    }
+
+    public void ServoFlip(Servo y, int pos){
+        y.setPosition(pos);
+        telemetry.addData(y + " target", pos);
+        telemetry.addData(y + " position", y.getPosition());
     }
 
     public void armExtender(double power){
