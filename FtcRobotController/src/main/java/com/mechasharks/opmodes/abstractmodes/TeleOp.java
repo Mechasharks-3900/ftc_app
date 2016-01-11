@@ -6,10 +6,17 @@ package com.mechasharks.opmodes.abstractmodes;
 public abstract class TeleOp extends AbstractOpMode {
 
     public void driveTeleOp(DriveMode mode) {
-        if (mode == DriveMode.DIRECT)
-            drive(gamepad1.left_stick_y, gamepad1.right_stick_y);
-        else
-            singleStickDrive(gamepad1.right_stick_y, gamepad1.right_stick_x);
+        switch (mode) {
+            case ARCADE:
+                singleStickDrive(gamepad1.right_stick_y, gamepad1.left_stick_x);
+                break;
+            case DIRECT:
+                drive(gamepad1.left_stick_y, gamepad1.right_stick_y);
+                break;
+            case SINGLE_JOYSTICK:
+                singleStickDrive(gamepad1.right_stick_y, gamepad1.right_stick_x);
+                break;
+        }
     }
 
     public void singleStickDrive(double forward, double turn) {
@@ -27,6 +34,6 @@ public abstract class TeleOp extends AbstractOpMode {
      * Created by stjjensen1 on 11/30/2015.
      */
     public enum DriveMode {
-        DIRECT, SINGLE_JOYSTICK
+        ARCADE, DIRECT, SINGLE_JOYSTICK
     }
 }

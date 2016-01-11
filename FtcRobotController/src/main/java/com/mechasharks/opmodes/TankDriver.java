@@ -21,7 +21,7 @@ public class TankDriver extends TeleOp {
     public void loop() {
         if (gamepad1.a && !previousA1) {
             driveMode = (driveMode == DriveMode.DIRECT)
-                    ? DriveMode.SINGLE_JOYSTICK
+                    ? DriveMode.ARCADE
                     : DriveMode.DIRECT;
         }
         if (gamepad1.b && !previousB1) {
