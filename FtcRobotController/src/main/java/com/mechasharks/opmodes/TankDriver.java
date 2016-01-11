@@ -10,33 +10,35 @@ import com.mechasharks.opmodes.abstractmodes.TeleOp;
 @Register(name = "Tank Driver")
 public class TankDriver extends TeleOp {
 
-    private TankMode tankMode = TankMode.DIRECT;
+    private DriveMode driveMode = DriveMode.DIRECT;
     private int value = 1;
     private int type = 1;
     private int num = 1;
 
+    private boolean previousA1, previousB1, previousY1;
+
     @Override
     public void loop() {
-        if (gamepad1.a) {
-            tankMode = (tankMode == TankMode.DIRECT)
-                    ? TankMode.SINGLE_JOYSTICK
-                    : TankMode.DIRECT;
+        if (gamepad1.a && !previousA1) {
+            driveMode = (driveMode == DriveMode.DIRECT)
+                    ? DriveMode.SINGLE_JOYSTICK
+                    : DriveMode.DIRECT;
         }
-        if (gamepad1.b) {
-            value = (value == 1)
-                    ? 0
-                    : 1;
+        if (gamepad1.b && !previousB1) {
+            value = 1 - value;
         }
-        if (gamepad1.y) {
-            num = (num == 1)
-                    ? 0
-                    : 1;
+        if (gamepad1.y && !previousY1) {
+            num = 1 - num;
         }
-        driveTeleOp(tankMode);
+        previousA1 = gamepad1.a;
+        previousB1 = gamepad1.b;
+        previousY1 = gamepad1.y;
+
+        driveTeleOp(driveMode);
         ServoTo(boxLiftLeft, value);
         ServoTo(boxLiftRight, value);
         ServoTo(flipper, num);
-        telemetry.addData("tankMode", tankMode);
+        telemetry.addData("driveMode", driveMode);
         armExtender(gamepad1.right_trigger + (-1 * gamepad1.left_trigger));
         armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));
         telemetry.addData("Gyro Z: ", gyroSensor.rawZ());
