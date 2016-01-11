@@ -2,7 +2,6 @@ package com.mechasharks.opmodes.abstractmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -48,10 +47,8 @@ public abstract class AbstractOpMode extends OpMode {
     }
 
     public void resetEncoders() {
-        driveLeftFront.setChannelMode(RunMode.RESET_ENCODERS);
-        driveRightFront.setChannelMode(RunMode.RESET_ENCODERS);
-        driveLeftBack.setChannelMode(RunMode.RESET_ENCODERS);
-        driveRightBack.setChannelMode(RunMode.RESET_ENCODERS);
+        for (DcMotor motor : hardwareMap.dcMotor)
+            motor.setMode(RunMode.RESET_ENCODERS);
     }
 
     public void driveTo(int position, float power) {
