@@ -94,24 +94,6 @@ public abstract class AbstractOpMode extends OpMode {
         telemetry.addData(a + " position", a.getPosition());
     }
 
-    public void ServoLiftLeft(Servo b, int pos){
-        b.setPosition(pos);
-        telemetry.addData(b + " target", pos);
-        telemetry.addData(b + " position", b.getPosition());
-    }
-
-    public void ServoLiftRight(Servo x, int pos){
-        x.setPosition(pos);
-        telemetry.addData(x + " target", pos);
-        telemetry.addData(x + " position", x.getPosition());
-    }
-
-    public void ServoFlip(Servo y, int pos){
-        y.setPosition(pos);
-        telemetry.addData(y + " target", pos);
-        telemetry.addData(y + " position", y.getPosition());
-    }
-
     public void armExtender(double power){
         extenderRight.setPower(power);
         extenderLeft.setPower(power);

@@ -27,11 +27,6 @@ public class TankDriver extends TeleOp {
                     ? 0
                     : 1;
         }
-        if (gamepad1.x) {
-            type = (type == 1)
-                    ? 0
-                    : 1;
-        }
         if (gamepad1.y) {
             num = (num == 1)
                     ? 0
@@ -39,8 +34,8 @@ public class TankDriver extends TeleOp {
         }
         driveTeleOp(tankMode);
         ServoTo(boxLiftLeft, value);
-        ServoTo(boxLiftRight, type);
-        ServoFlip(flipper, num);
+        ServoTo(boxLiftRight, value);
+        ServoTo(flipper, num);
         telemetry.addData("tankMode", tankMode);
         armExtender(gamepad1.right_trigger + (-1 * gamepad1.left_trigger));
         armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));
