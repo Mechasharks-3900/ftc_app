@@ -17,16 +17,11 @@ public class AutonomousTest1 extends AutonomousOp {
     @Override
     public void start() {
         driveTo(1, 100);
+        turnWithGyro(360, false);
     }
 
     @Override
     public void loop() {
-        telemetry.addData("Right Encoder", driveRightBack.getChannelMode());
-        telemetry.addData("Right Encoder Target", driveRightBack.getTargetPosition());
-        telemetry.addData("Right Encoder Current", driveRightBack.getCurrentPosition());
-        telemetry.addData("Left Encoder", driveLeftBack.getChannelMode());
-        telemetry.addData("Left Encoder Target", driveLeftBack.getTargetPosition());
-        telemetry.addData("Left Encoder Current", driveLeftBack.getCurrentPosition());
-        telemetry.addData("Gyro position: ", gyroSensor.getRotation());
+        telemetry.addData("Gyro Heading", gyroSensor.getHeading());
     }
 }
