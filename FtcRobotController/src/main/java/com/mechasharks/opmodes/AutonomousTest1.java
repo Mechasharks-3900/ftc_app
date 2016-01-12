@@ -17,7 +17,7 @@ public class AutonomousTest1 extends AutonomousOp {
     @Override
     public void start() {
         driveTo(1, 100);
-        turnWithGyro(360, false);
+        turnWithGyro(360);
     }
 
     @Override
