@@ -103,6 +103,7 @@ public abstract class AbstractOpMode extends OpMode {
         moveTo(extenderRight,pos,75,false);
     }
     public void armLift(double power){
+        armLift.setMode(RunMode.RUN_WITHOUT_ENCODERS);
         armLift.setPower(power);
     }
     public void armLiftTo(int pos){
