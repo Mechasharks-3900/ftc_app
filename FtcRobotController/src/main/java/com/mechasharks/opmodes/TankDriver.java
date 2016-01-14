@@ -13,7 +13,7 @@ public class TankDriver extends TeleOp {
     private DriveMode driveMode = DriveMode.DIRECT;
     private int value = 1;
     private int type = 1;
-    private int num = 1;
+    private int num = 0;
 
     private boolean previousA1, previousB1, previousY1;
 
@@ -43,6 +43,5 @@ public class TankDriver extends TeleOp {
         armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));
         telemetry.addData("Gyro Z: ", gyroSensor.rawZ());
         telemetry.addData("Gyro heading: ", gyroSensor.getHeading());
-
     }
 }
