@@ -1,5 +1,6 @@
 package com.mechasharks.opmodes.abstractmodes;
 
+import com.mechasharks.MotorGroup;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
@@ -12,16 +13,17 @@ import com.qualcomm.robotcore.hardware.Servo;
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft, armLift;
     protected Servo boxLiftLeft, boxLiftRight, flipper, BallPickerRight, BallPickerLeft;
-    protected GyroSensor gyroSensor;
-
+    public GyroSensor gyroSensor;
+    protected MotorGroup driveMotors;
 
     @Override
     public void init() {
-        int value = 0;
         driveLeftFront = hardwareMap.dcMotor.get("motor left front");
         driveRightFront = hardwareMap.dcMotor.get("motor right front");
         driveLeftBack = hardwareMap.dcMotor.get("motor left back");
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
+        driveMotors = new MotorGroup(driveLeftFront, driveLeftBack, driveRightFront, driveRightBack);
+
         extenderLeft = hardwareMap.dcMotor.get("extender left");
         extenderRight = hardwareMap.dcMotor.get("extender right");
         armLift = hardwareMap.dcMotor.get("lift");
@@ -55,34 +57,24 @@ public abstract class AbstractOpMode extends OpMode {
         driveTo(position, power, true);
     }
 
-    public void driveTo(int position, float power, boolean relative) {
-        moveTo(driveLeftFront, position, power, relative);
-        moveTo(driveRightFront, position, power, relative);
-        moveTo(driveLeftBack, position, power, relative);
-        moveTo(driveRightBack, position, power, relative);
+    public int driveTo(int position, float power, boolean relative) {
+        int avg = moveTo(driveLeftFront, position, power) +
+                moveTo(driveRightFront, position, power) +
+                moveTo(driveLeftBack, position, power) +
+                moveTo(driveRightBack, position, power);
+        return avg / 4;
     }
 
-    public void moveTo(DcMotor m, int position, float power, boolean relative) {
-        int newVal = position;
-        if (relative)
-            newVal += m.getCurrentPosition();
-        m.setChannelMode(RunMode.RUN_TO_POSITION);
-        m.setTargetPosition(newVal);
-        m.setPower(power / 100);
+    public int moveTo(DcMotor m, int position, double power) {
+        m.setMode(RunMode.RUN_TO_POSITION);
+        m.setTargetPosition(position);
+        m.setPower(power);
+        return position - m.getCurrentPosition();
     }
 
     public void move(DcMotor m, double power) {
         m.setChannelMode(RunMode.RUN_WITHOUT_ENCODERS);
         m.setPower(power);
-    }
-
-    public void wait1Msec(int delay)
-    {
-        try {
-            Thread.sleep(delay);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void ServoTo(Servo a, int pos) {
@@ -91,23 +83,25 @@ public abstract class AbstractOpMode extends OpMode {
         telemetry.addData(a + " position", a.getPosition());
     }
 
-    public void armExtender(double power){
+    public void armExtender(double power) {
         extenderRight.setPower(power);
         extenderLeft.setPower(power);
         extenderLeft.setChannelMode(RunMode.RUN_USING_ENCODERS);
         extenderRight.setChannelMode(RunMode.RUN_USING_ENCODERS);
     }
 
-    public void armExtendTo(int pos){
-        moveTo(extenderLeft, pos,75,false);
-        moveTo(extenderRight,pos,75,false);
+    public int armExtendTo(int pos) {
+        return (moveTo(extenderLeft, pos, 75) +
+                moveTo(extenderRight, pos, 75)) / 2;
     }
-    public void armLift(double power){
+
+    public void armLift(double power) {
         armLift.setMode(RunMode.RUN_WITHOUT_ENCODERS);
         armLift.setPower(power);
     }
-    public void armLiftTo(int pos){
-        moveTo(armLift, pos, 75, false);
+
+    public int armLiftTo(int pos) {
+        return moveTo(armLift, pos, 75);
     }
 }
 

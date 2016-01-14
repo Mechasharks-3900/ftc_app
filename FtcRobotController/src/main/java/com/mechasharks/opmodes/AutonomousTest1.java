@@ -9,19 +9,23 @@ import com.mechasharks.opmodes.abstractmodes.AutonomousOp;
 @Register(name = "Autonomous Test")
 public class AutonomousTest1 extends AutonomousOp {
 
-    @Override
-    public void init() {
-        super.init();
-    }
+
 
     @Override
     public void start() {
-        driveTo(1, 100);
-        turnWithGyro(360);
+        command = new Sequential(
+                new DriveTo(500, 5),
+                new TurnTo(90, 2)
+        );
+
+        super.start();
     }
 
     @Override
     public void loop() {
+        if (command.act())
+            if (command != null)
+                command = null;
         telemetry.addData("Gyro Heading", gyroSensor.getHeading());
     }
 }
