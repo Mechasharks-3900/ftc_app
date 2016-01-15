@@ -6,15 +6,17 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
  * Created by stjjensen1 on 11/20/2015.
  */
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft, armLift;
-    protected Servo boxLiftLeft, boxLiftRight, flipper, BallPickerRight, BallPickerLeft;
+    protected Servo boxLiftLeft, boxLiftRight, flipper, ballPickerRight, ballPickerLeft;
     public GyroSensor gyroSensor;
     protected MotorGroup driveMotors;
+    protected TouchSensor leadScrewArm, armHook;
 
     @Override
     public void init() {
@@ -23,16 +25,17 @@ public abstract class AbstractOpMode extends OpMode {
         driveLeftBack = hardwareMap.dcMotor.get("motor left back");
         driveRightBack = hardwareMap.dcMotor.get("motor right back");
         driveMotors = new MotorGroup(driveLeftFront, driveLeftBack, driveRightFront, driveRightBack);
-
         extenderLeft = hardwareMap.dcMotor.get("extender left");
         extenderRight = hardwareMap.dcMotor.get("extender right");
         armLift = hardwareMap.dcMotor.get("lift");
         boxLiftLeft = hardwareMap.servo.get("box lift left");
         boxLiftRight = hardwareMap.servo.get("box lift left");
         flipper = hardwareMap.servo.get("flip");
-        BallPickerRight = hardwareMap.servo.get("ball picker right");
-        BallPickerLeft = hardwareMap.servo.get("ball picker left");
+        ballPickerRight = hardwareMap.servo.get("ball picker right");
+        ballPickerLeft = hardwareMap.servo.get("ball picker left");
         gyroSensor = hardwareMap.gyroSensor.get("gyro main");
+        leadScrewArm = hardwareMap.touchSensor.get("lead screw arm");
+        armHook = hardwareMap.touchSensor.get("arm Hook");
         gyroSensor.calibrate();
         resetEncoders();
     }
@@ -77,7 +80,7 @@ public abstract class AbstractOpMode extends OpMode {
         m.setPower(power);
     }
 
-    public void ServoTo(Servo a, int pos) {
+    public void ServoTo(Servo a, double pos) {
         a.setPosition(pos);
         telemetry.addData(a + " target", pos);
         telemetry.addData(a + " position", a.getPosition());
@@ -86,8 +89,8 @@ public abstract class AbstractOpMode extends OpMode {
     public void armExtender(double power) {
         extenderRight.setPower(power);
         extenderLeft.setPower(power);
-        extenderLeft.setChannelMode(RunMode.RUN_USING_ENCODERS);
-        extenderRight.setChannelMode(RunMode.RUN_USING_ENCODERS);
+        extenderLeft.setMode(RunMode.RUN_USING_ENCODERS);
+        extenderRight.setMode(RunMode.RUN_USING_ENCODERS);
     }
 
     public int armExtendTo(int pos) {

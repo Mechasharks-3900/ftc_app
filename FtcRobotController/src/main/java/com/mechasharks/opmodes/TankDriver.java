@@ -12,10 +12,10 @@ public class TankDriver extends TeleOp {
 
     private DriveMode driveMode = DriveMode.DIRECT;
     private int value = 1;
-    private int type = 1;
+    private double type = 1;
     private int num = 0;
 
-    private boolean previousA1, previousB1, previousY1;
+    private boolean previousA1, previousB1, previousY1, previousD_left, previousD_right;
 
     @Override
     public void loop() {
@@ -30,14 +30,27 @@ public class TankDriver extends TeleOp {
         if (gamepad1.y && !previousY1) {
             num = 1 - num;
         }
+        if (gamepad2.dpad_left && !previousD_left){
+            type = 1 - 1;
+        }
+        else if(gamepad2.dpad_right && !previousD_right){
+            type = 1 - 0;
+        }
+        else{
+            type = 1 - 0.5;
+        }
+
         previousA1 = gamepad1.a;
         previousB1 = gamepad1.b;
         previousY1 = gamepad1.y;
-
+        previousD_left = gamepad2.dpad_left;
+        previousD_right = gamepad2.dpad_right;
         driveTeleOp(driveMode);
         ServoTo(boxLiftLeft, value);
         ServoTo(boxLiftRight, value);
         ServoTo(flipper, num);
+        ServoTo(ballPickerRight, type);
+        ServoTo(ballPickerLeft, type);
         telemetry.addData("driveMode", driveMode);
         armExtender(gamepad1.right_trigger + (-1 * gamepad1.left_trigger));
         armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));

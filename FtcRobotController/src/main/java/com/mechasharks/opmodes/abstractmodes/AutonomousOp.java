@@ -1,6 +1,8 @@
 package com.mechasharks.opmodes.abstractmodes;
 
 import com.mechasharks.Command;
+import com.qualcomm.ftcrobotcontroller.opmodes.PushBotTouchEvent;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +13,7 @@ import java.util.List;
  * Created by stjjensen1 on 11/20/2015.
  */
 
-public abstract class AutonomousOp extends AbstractOpMode {
+public abstract class AutonomousOp extends AbstractOpMode{
     protected Command command;
 
     @Override
@@ -116,6 +118,22 @@ public abstract class AutonomousOp extends AbstractOpMode {
             if (commands.get(0).act())
                 commands.remove(0);
             return commands.size() == 0;
+        }
+    }
+
+
+    public void touchSensorValues(double power, int pos){
+        leadScrewArm.getValue();
+        armHook.getValue();
+        if(leadScrewArm.isPressed()){
+        }
+        else{
+
+        }
+        if(armHook.isPressed()){
+        }
+        else{
+
         }
     }
 }
