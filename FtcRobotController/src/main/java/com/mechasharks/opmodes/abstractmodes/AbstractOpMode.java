@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  */
 public abstract class AbstractOpMode extends OpMode {
     protected DcMotor driveLeftFront, driveRightFront, driveLeftBack, driveRightBack, extenderRight, extenderLeft, armLift;
-    protected Servo boxLiftLeft, boxLiftRight, flipper, ballPickerRight, ballPickerLeft;
+    protected Servo boxLiftLeft, boxLiftRight, flipper, ballPickerRight, ballPickerLeft, clipRight, clipLeft;
     public GyroSensor gyroSensor;
     protected MotorGroup driveMotors;
     protected TouchSensor leadScrewArm, armHook;
@@ -33,6 +33,8 @@ public abstract class AbstractOpMode extends OpMode {
         flipper = hardwareMap.servo.get("flip");
         ballPickerRight = hardwareMap.servo.get("ball picker right");
         ballPickerLeft = hardwareMap.servo.get("ball picker left");
+        clipRight = hardwareMap.servo.get("clip right");
+        clipLeft = hardwareMap.servo.get("clip left");
         gyroSensor = hardwareMap.gyroSensor.get("gyro main");
         leadScrewArm = hardwareMap.touchSensor.get("lead screw arm");
         armHook = hardwareMap.touchSensor.get("arm Hook");
@@ -88,7 +90,7 @@ public abstract class AbstractOpMode extends OpMode {
 
     public void armExtender(double power) {
         extenderRight.setPower(power);
-        extenderLeft.setPower(power);
+        extenderLeft.setPower(-power);
         extenderLeft.setMode(RunMode.RUN_USING_ENCODERS);
         extenderRight.setMode(RunMode.RUN_USING_ENCODERS);
     }
