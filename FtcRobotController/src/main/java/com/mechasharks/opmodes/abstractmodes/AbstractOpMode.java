@@ -88,7 +88,7 @@ public abstract class AbstractOpMode extends OpMode {
 
     public void armExtender(double power) {
         extenderRight.setPower(power);
-        extenderLeft.setPower(power);
+        extenderLeft.setPower(-power);
         extenderLeft.setMode(RunMode.RUN_USING_ENCODERS);
         extenderRight.setMode(RunMode.RUN_USING_ENCODERS);
     }
@@ -99,7 +99,7 @@ public abstract class AbstractOpMode extends OpMode {
     }
 
     public void armLift(double power) {
-        armLift.setMode(RunMode.RUN_WITHOUT_ENCODERS);
+        armLift.setMode(RunMode.RUN_USING_ENCODERS);
         armLift.setPower(power);
     }
 
