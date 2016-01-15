@@ -124,7 +124,6 @@ public abstract class AutonomousOp extends AbstractOpMode{
         }
     }
 
-
     public void touchSensorValues(double power, int pos){
         leadScrewArm.getValue();
         armHook.getValue();
@@ -135,6 +134,7 @@ public abstract class AutonomousOp extends AbstractOpMode{
 
         }
         if(armHook.isPressed()){
+
         }
         else{
 

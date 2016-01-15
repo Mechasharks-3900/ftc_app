@@ -29,7 +29,7 @@ public abstract class AbstractOpMode extends OpMode {
         extenderRight = hardwareMap.dcMotor.get("extender right");
         armLift = hardwareMap.dcMotor.get("lift");
         boxLiftLeft = hardwareMap.servo.get("box lift left");
-        boxLiftRight = hardwareMap.servo.get("box lift left");
+        boxLiftRight = hardwareMap.servo.get("box lift right");
         flipper = hardwareMap.servo.get("flip");
         ballPickerRight = hardwareMap.servo.get("ball picker right");
         ballPickerLeft = hardwareMap.servo.get("ball picker left");
