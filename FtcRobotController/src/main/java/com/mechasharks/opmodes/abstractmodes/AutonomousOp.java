@@ -1,8 +1,6 @@
 package com.mechasharks.opmodes.abstractmodes;
 
 import com.mechasharks.Command;
-import com.qualcomm.ftcrobotcontroller.opmodes.PushBotTouchEvent;
-import com.qualcomm.robotcore.hardware.DcMotorController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +30,11 @@ public abstract class AutonomousOp extends AbstractOpMode{
 
     public void turn(double power) {
         drive(-power, power);
+    }
+
+    @Override
+    public void loop() {
+
     }
 
     ////////////////////////////////////////////////////////

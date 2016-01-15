@@ -31,13 +31,13 @@ public class TankDriver extends TeleOp {
             num = 1 - num;
         }
         if (gamepad2.dpad_left && !previousD_left){
-            type = 1 - 1;
+            type = 0;
         }
         else if(gamepad2.dpad_right && !previousD_right){
-            type = 1 - 0;
+            type = 1;
         }
         else{
-            type = 1 - 0.5;
+            type = 0.5;
         }
 
         previousA1 = gamepad1.a;
