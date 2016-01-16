@@ -12,8 +12,8 @@ public class TankDriver extends TeleOp {
 
     private DriveMode driveMode = DriveMode.DIRECT;
     private int value = 1;
-    private double boxLeft = 1;
-    private double boxRight = 1;
+    private double boxLeft = .5;
+    private double boxRight = .5;
     private int num = 0;
     private double clip = 0.25;
 
@@ -21,36 +21,37 @@ public class TankDriver extends TeleOp {
 
     @Override
     public void loop() {
-        if (gamepad1.a && !previousA1) {
+        if (gamepad1.y && !previousA1) {
             driveMode = (driveMode == DriveMode.DIRECT)
                     ? DriveMode.ARCADE
                     : DriveMode.DIRECT;
         }
-        if (gamepad1.b && !previousB1) {
+        if (gamepad2.b && !previousB1) {
             value = 1 - value;
         }
-        if (gamepad1.y && !previousY1) {
+        if (gamepad2.y && !previousY1) {
             num = 1 - num;
         }
-        if (gamepad1.right_bumper && !previousRight_Bumper){
+        if (gamepad2.right_bumper && !previousRight_Bumper){
             clip = 1 - clip;
         }
-        if (gamepad1.left_bumper && !previousLeft_Bumper){
+        if (gamepad2.left_bumper && !previousLeft_Bumper){
             clip = 1 - clip;
         }
-        if (gamepad1.dpad_left && !previousD_left){
-            boxLeft = 0;
-        }
-        else if(gamepad1.dpad_right && !previousD_right){
-            boxLeft = 1;
-        }
-        else{
-            boxLeft = 0.5;
-        }
-        if (gamepad1.dpad_up && !previousD_up){
+        if (gamepad1.left_trigger>.7 && !gamepad1.left_bumper){
             boxRight = 0;
         }
-        else if(gamepad1.dpad_down && !previousD_down){
+        else if(gamepad1.left_trigger<.2 && gamepad1.left_bumper){
+            boxRight = 1;
+        }
+        else{
+            boxRight = 0.5;
+        }
+
+        if (gamepad1.right_trigger>.7 && !gamepad1.right_bumper){
+            boxRight = 0;
+        }
+        else if(gamepad1.right_trigger<.2 && gamepad1.right_bumper){
             boxRight = 1;
         }
         else{
@@ -58,14 +59,14 @@ public class TankDriver extends TeleOp {
         }
 
         previousA1 = gamepad1.a;
-        previousB1 = gamepad1.b;
-        previousY1 = gamepad1.y;
-        previousD_left = gamepad1.dpad_left;
-        previousD_right = gamepad1.dpad_right;
-        previousRight_Bumper = gamepad1.right_bumper;
-        previousLeft_Bumper = gamepad1.left_bumper;
-        previousD_down = gamepad1.dpad_down;
-        previousD_up = gamepad1.dpad_up;
+        previousB1 = gamepad2.b;
+        previousY1 = gamepad2.y;
+        previousD_left = gamepad2.dpad_left;
+        previousD_right = gamepad2.dpad_right;
+        previousRight_Bumper = gamepad2.right_bumper;
+        previousLeft_Bumper = gamepad2.left_bumper;
+        previousD_down = gamepad2.dpad_down;
+        previousD_up = gamepad2.dpad_up;
 
         driveTeleOp(driveMode);
         ServoTo(boxLiftLeft, 1-value);
@@ -76,8 +77,8 @@ public class TankDriver extends TeleOp {
         ServoTo(clipRight, clip);
         ServoTo(clipLeft, clip);
         telemetry.addData("driveMode", driveMode);
-        armExtender(gamepad1.right_trigger + (-1 * gamepad1.left_trigger));
-        armLift((gamepad1.left_bumper ? 1 : 0) + (gamepad1.right_bumper ? -1 : 0));
+        armExtender(gamepad2.right_trigger + (-1 * gamepad2.left_trigger));
+        armLift((gamepad2.left_bumper ? 1 : 0) + (gamepad2.right_bumper ? -1 : 0));
         telemetry.addData("Gyro Z: ", gyroSensor.rawZ());
         telemetry.addData("Gyro heading: ", gyroSensor.getHeading());
     }
