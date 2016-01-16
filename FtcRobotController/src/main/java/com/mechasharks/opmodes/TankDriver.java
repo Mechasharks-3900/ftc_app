@@ -54,7 +54,7 @@ public class TankDriver extends TeleOp {
         ServoTo(boxLiftLeft, 1-value);
         ServoTo(boxLiftRight, value);
         ServoTo(flipper, num);
-        ServoTo(ballPickerRight, 1-gamepad1.right_trigger);
+        ServoTo(ballPickerRight, gamepad1.right_trigger);
         ServoTo(ballPickerLeft, 1-gamepad1.left_trigger);
         ServoTo(clipRight, clip);
         ServoTo(clipLeft, clip);

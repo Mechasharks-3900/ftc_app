@@ -58,6 +58,15 @@ public abstract class AutonomousOp extends AbstractOpMode {
         @Override
         public boolean act() {
             telemetry.addData("Running DriveTo", "");
+            telemetry.addData("LF curr", driveLeftFront.getCurrentPosition());
+            telemetry.addData("LF target", driveLeftFront.getTargetPosition());
+            telemetry.addData("LB curr", driveLeftFront.getCurrentPosition());
+            telemetry.addData("LB target", driveLeftFront.getTargetPosition());
+            telemetry.addData("RF curr", driveLeftFront.getCurrentPosition());
+            telemetry.addData("RF target", driveLeftFront.getTargetPosition());
+            telemetry.addData("RB curr", driveLeftFront.getCurrentPosition());
+            telemetry.addData("RB target", driveLeftFront.getTargetPosition());
+
             return (Math.abs(moveTo(driveLeftFront, newPositions[0], 1)) +
                     Math.abs(moveTo(driveLeftBack, newPositions[1], 1)) +
                     Math.abs(moveTo(driveRightFront, newPositions[2], 1)) +
