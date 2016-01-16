@@ -20,8 +20,8 @@ public abstract class TeleOp extends AbstractOpMode {
     }
 
     public void singleStickDrive(double forward, double turn) {
-        double left = forward + turn;
-        double right = forward - turn;
+        double left = forward - turn;
+        double right = forward + turn;
         double highest = Math.max(Math.abs(left), Math.abs(right));
         if (highest > 1) {
             right /= highest;

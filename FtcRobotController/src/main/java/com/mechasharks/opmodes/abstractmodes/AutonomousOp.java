@@ -11,7 +11,7 @@ import java.util.List;
  * Created by stjjensen1 on 11/20/2015.
  */
 
-public abstract class AutonomousOp extends AbstractOpMode{
+public abstract class AutonomousOp extends AbstractOpMode {
     protected Command command;
 
     @Override
@@ -47,8 +47,8 @@ public abstract class AutonomousOp extends AbstractOpMode{
 
         public DriveTo(int position, int error) {
             newPositions = new int[]{
-                    driveLeftFront.getCurrentPosition() + position,
-                    driveLeftBack.getCurrentPosition() + position,
+                    driveLeftFront.getCurrentPosition() - position,
+                    driveLeftBack.getCurrentPosition() - position,
                     driveRightFront.getCurrentPosition() + position,
                     driveRightBack.getCurrentPosition() + position
             };
@@ -57,10 +57,12 @@ public abstract class AutonomousOp extends AbstractOpMode{
 
         @Override
         public boolean act() {
-            return (moveTo(driveLeftFront, newPositions[0], 1) +
-                    moveTo(driveLeftBack, newPositions[1], 1) +
-                    moveTo(driveRightFront, newPositions[2], 1) +
-                    moveTo(driveRightBack, newPositions[3], 1)) < error * 4;
+            telemetry.addData("Running DriveTo", "");
+            return (Math.abs(moveTo(driveLeftFront, newPositions[0], 1)) +
+                    Math.abs(moveTo(driveLeftBack, newPositions[1], 1)) +
+                    Math.abs(moveTo(driveRightFront, newPositions[2], 1)) +
+                    Math.abs(moveTo(driveRightBack, newPositions[3], 1))) < error * 4;
+
         }
     }
 
@@ -75,6 +77,7 @@ public abstract class AutonomousOp extends AbstractOpMode{
 
         @Override
         public boolean act() {
+            telemetry.addData("Running TurnTo", "");
             return turnWithGyro(finalDir) < error;
         }
     }
@@ -102,6 +105,7 @@ public abstract class AutonomousOp extends AbstractOpMode{
             while (iter.hasNext())
                 if (iter.next().act())
                     iter.remove();
+            telemetry.addData("Running Simultaneous", "");
             return commands.size() == 0;
         }
     }
@@ -113,13 +117,14 @@ public abstract class AutonomousOp extends AbstractOpMode{
         private List<Command> commands;
 
         public Sequential(Command... commands) {
-            this.commands = Arrays.asList(commands);
+            this.commands = new ArrayList<>(Arrays.asList(commands));
         }
 
         @Override
         public boolean act() {
             if (commands.get(0).act())
                 commands.remove(0);
+            telemetry.addData("Running Sequential", "");
             return commands.size() == 0;
         }
     }
