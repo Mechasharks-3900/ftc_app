@@ -38,25 +38,7 @@ public class TankDriver extends TeleOp {
         if (gamepad2.left_bumper && !previousLeft_Bumper){
             clip = 1 - clip;
         }
-        if (gamepad1.left_trigger>.7 && !gamepad1.left_bumper){
-            boxRight = 0;
-        }
-        else if(gamepad1.left_trigger<.2 && gamepad1.left_bumper){
-            boxRight = 1;
-        }
-        else{
-            boxRight = 0.5;
-        }
 
-        if (gamepad1.right_trigger>.7 && !gamepad1.right_bumper){
-            boxRight = 0;
-        }
-        else if(gamepad1.right_trigger<.2 && gamepad1.right_bumper){
-            boxRight = 1;
-        }
-        else{
-            boxRight = 0.5;
-        }
 
         previousA1 = gamepad1.a;
         previousB1 = gamepad2.b;
@@ -72,8 +54,8 @@ public class TankDriver extends TeleOp {
         ServoTo(boxLiftLeft, 1-value);
         ServoTo(boxLiftRight, value);
         ServoTo(flipper, num);
-        ServoTo(ballPickerRight, boxRight);
-        ServoTo(ballPickerLeft, boxLeft);
+        ServoTo(ballPickerRight, 1-gamepad1.right_trigger);
+        ServoTo(ballPickerLeft, 1-gamepad1.left_trigger);
         ServoTo(clipRight, clip);
         ServoTo(clipLeft, clip);
         telemetry.addData("driveMode", driveMode);
