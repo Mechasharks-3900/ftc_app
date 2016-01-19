@@ -77,6 +77,15 @@ public abstract class AbstractOpMode extends OpMode {
         return position - m.getCurrentPosition();
     }
 
+    public int moveTo(DcMotor m, DcMotor n, int position, double power) {
+        m.setMode(RunMode.RUN_TO_POSITION);
+        n.setMode(RunMode.RUN_WITHOUT_ENCODERS);
+        m.setTargetPosition(position);
+        m.setPower(power);
+        n.setPower(power);
+        return position - m.getCurrentPosition();
+    }
+
     public void move(DcMotor m, double power) {
         m.setMode(RunMode.RUN_WITHOUT_ENCODERS);
         m.setPower(power);
@@ -91,8 +100,8 @@ public abstract class AbstractOpMode extends OpMode {
     public void armExtender(double power) {
         extenderRight.setPower(power);
         extenderLeft.setPower(-power);
-        extenderLeft.setMode(RunMode.RUN_USING_ENCODERS);
-        extenderRight.setMode(RunMode.RUN_USING_ENCODERS);
+        extenderLeft.setMode(RunMode.RUN_WITHOUT_ENCODERS);
+        extenderRight.setMode(RunMode.RUN_WITHOUT_ENCODERS);
     }
 
     public int armExtendTo(int pos) {

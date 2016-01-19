@@ -10,18 +10,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Register(name = "Servo Test")
 public class ServoTest extends TeleOp {
 
-    Servo servo_1, servo_2;
-
-    @Override
-    public void init() {
-        super.init();
-        servo_1 = hardwareMap.servo.get("servo_1");
-        servo_2 = hardwareMap.servo.get("servo_2");
-    }
-
     @Override
     public void loop() {
-        servo_1.setPosition(gamepad1.left_stick_y);
-        servo_2.setPosition(gamepad1.right_stick_y);
+        boxLiftRight.setPosition(1);
+        boxLiftLeft.setPosition(0);
     }
 }

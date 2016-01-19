@@ -1,6 +1,7 @@
 package com.mechasharks.opmodes.abstractmodes;
 
 import com.mechasharks.Command;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,10 +68,8 @@ public abstract class AutonomousOp extends AbstractOpMode {
             telemetry.addData("RB curr", driveLeftFront.getCurrentPosition());
             telemetry.addData("RB target", driveLeftFront.getTargetPosition());
 
-            return (Math.abs(moveTo(driveLeftFront, newPositions[0], 1)) +
-                    Math.abs(moveTo(driveLeftBack, newPositions[1], 1)) +
-                    Math.abs(moveTo(driveRightFront, newPositions[2], 1)) +
-                    Math.abs(moveTo(driveRightBack, newPositions[3], 1))) < error * 4;
+            return (Math.abs(moveTo(driveLeftFront, driveLeftBack, newPositions[0], 1)) +
+                    Math.abs(moveTo(driveRightFront, driveRightBack, newPositions[2], 1))) < error * 4;
 
         }
     }
@@ -88,6 +87,22 @@ public abstract class AutonomousOp extends AbstractOpMode {
         public boolean act() {
             telemetry.addData("Running TurnTo", "");
             return turnWithGyro(finalDir) < error;
+        }
+    }
+
+    public class ServoTo extends Command {
+        Servo s;
+        double val;
+
+        public ServoTo(Servo servo, double value) {
+            s = servo;
+            val = value;
+        }
+
+        @Override
+        public boolean act() {
+            s.setPosition(val);
+            return Math.abs(s.getPosition() - val) < .01;
         }
     }
 

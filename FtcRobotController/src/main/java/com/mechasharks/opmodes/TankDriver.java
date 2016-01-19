@@ -14,16 +14,16 @@ public class TankDriver extends TeleOp {
     private int value = 1;
     private double spindle = .5;
     private int num = 0;
-    private double clip = 0.25;
+    private double clip = 1;
 
-    private boolean previousA1, previousB1, previousY1, previousX1, previousD_left, previousD_right, previousD_up, previousD_down, previousRight_Bumper, previousLeft_Bumper;
+    private boolean previousA1, previousB1, previousY1, previousX1, previousD_left, previousD_right, previousD_up, previousD_down, previousRight_Bumper;
 
     @Override
     public void loop() {
         if (gamepad1.y && !previousA1) {
             driveMode = (driveMode == DriveMode.DIRECT)
-                    ? DriveMode.ARCADE
-                    : DriveMode.DIRECT;
+                    ? DriveMode.DIRECT
+                    : DriveMode.ARCADE;
         }
         if (gamepad1.b && !previousB1) {
             value = 1 - value;
@@ -37,9 +37,6 @@ public class TankDriver extends TeleOp {
         if (gamepad2.right_bumper && !previousRight_Bumper){
             clip = 1 - clip;
         }
-        if (gamepad2.left_bumper && !previousLeft_Bumper){
-            clip = 1 - clip;
-        }
 
 
         previousA1 = gamepad1.a;
@@ -48,7 +45,6 @@ public class TankDriver extends TeleOp {
         previousD_left = gamepad2.dpad_left;
         previousD_right = gamepad2.dpad_right;
         previousRight_Bumper = gamepad2.right_bumper;
-        previousLeft_Bumper = gamepad2.left_bumper;
         previousD_down = gamepad2.dpad_down;
         previousD_up = gamepad2.dpad_up;
 
